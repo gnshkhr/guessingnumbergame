@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    body{
+      background: linear-gradient(to right, black ,white);
+      color:white;
+      opacity:0.9;
+    }
+    h1{
+        text-align:center;
+        text-shadow: red, 10px, 5px, 15px;
+        font-family:sans-serif;
+
+    }
+    input[type=submit]
+                {
+                    width: 100px;
+                    background-color: cornflowerblue;
+                    padding: 5px;
+                    border: 1px solid bl;
+                    color: white;
+                }
+    input[type=reset]
+                {
+                    width: 100px;
+                    background-color: #bbbb;
+                    padding: 5px;
+                    border: 1px solid black;
+                    color: white;
+                }
+    input[type=submit]:hover
+                {
+                    background-color: blue;
+                    color: black;
+                
+                }
+                .btn{
+                    width: 100px;
+                    background-color: #bbbb;
+                    padding: 5px;
+                    border: 1px solid black;
+                    color: white;
+                    text-decoration:none;
+
+                }
+                .block{
+                   width:50%;
+                    padding-right:14%;
+                    margin-left:30%;
+
+                }
+   
+    </style>
+</head>
+<body>
+<h1> Welcome to the guessing machine!</h1>
+    <?php
+       $err="";
+       if(isset($_POST['count'])){
+        $count=$_POST['count'];
+    }
+    else{
+        $count=0;
+    }
+      $num= mt_rand(0,1000);
+      if(isset($_POST['btnsubmit'])){
+        
+       
+        ++$count;
+
+      
+      $num1=$_POST['num1'];
+      if( $num > $num1 ){
+    
+       // echo  " OOPS TOO CLOSE!! Your guess is Wrong ".$count. "TRY some SMALLER Number!!";
+        $err = " OOPS TOO CLOSE!! Your guess is Wrong ".$count. "TRY some SMALLER Number!!";
+
+      }
+        else if( $num < $num1 ){
+
+        
+        //echo "OOPS TOO CLOSE!! Your guess is Wrong " .$count." TRY some Greater Number!!";
+        $err="OOPS TOO CLOSE!! Your guess is Wrong " .$count." TRY some Greater Number!!";
+
+        }
+    
+    else{
+          //  echo  " WELL DONE YOU ARE THE WINNER!!" .$count." Your guess is Correct!!!";
+         $err= " WELL DONE YOU ARE THE WINNER!!" .$count." Your guess is Correct!!!";
+        }
+        
+    }  
+
+   
+
+    if($count==5){
+       // echo "GAME OVER!!  Better Luck Next Time!!";
+      $err= " GAME OVER!!   Better Luck Next Time!!";
+    }
+         
+      
+     
+
+
+
+
+    ?>   
+<div class="block">
+       <h1 style='background-color:red';>  <?= $err;  ?> </h1>
+       <table>
+    <form action="" method="POST">
+    <tr> <td> <label for="Num">GUESS THE NUMBER HERE</label></td>
+   <td> <input type="text" name="num1" id=""></td></tr>
+   <tr>
+     <td>Total LIVES</td><td>
+    <input type="number"  max="4" name="count" value="<?php echo $count ; ?>" ></p> </td></tr>
+    <tr><td></td>
+    <td> <input type="submit" name="btnsubmit" id=""<?php if($count==5) echo'disabled';?>>  <input type="reset" value="CLEAR"></td></tr>
+    <tr><td></td></tr>
+    <tr><td colspan="1"><a href="guessnumber.php" class="btn">RESTART</a></td></tr>
+
+    </form>
+    <a href=""></a>
+
+    </table>
+    </div>
+
+
+</body>
+</html>
